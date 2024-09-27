@@ -2,25 +2,19 @@ import random
 
 keycode = random.randint(9,96)
 
-def isCoprime(x):
-    if x<1:
+def isCoprime(n):
+    if n <= 1:
         return False
-    if x<4 and x>1:
+    if n <= 3:
         return True
-    if x==5:
-        return True
-    if x==7:
-        return True
-    if x==11:
-        return True
-    if x==13:
-        return True
-    if x==17:
-        return True
-    if x==19:
-        return True
-    else:
+    if n % 2 == 0 or n % 3 == 0:
         return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
 
 def getPQ():
     while True:
@@ -43,9 +37,8 @@ def getED(Fn):
 
 def getKeyWord(x):
     key = []
-    for char in x:
-        char = ord(char) - keycode
-        # if char < 150:
+    for ch in x:
+        char = ord(ch) - keycode
         key.append(char)
     return key
 
@@ -59,10 +52,7 @@ def getY(x,e,n):
 def getValueWord(key):
     val = []
     for k in key:
-        if k<1000:
-            v = chr(k+keycode)
-        else:
-            v = ord(k+keycode)
+        v = chr(k+keycode)
         val.append(v)
     return val
 
